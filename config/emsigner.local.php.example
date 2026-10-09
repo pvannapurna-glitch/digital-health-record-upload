@@ -1,0 +1,70 @@
+<?php
+/**
+ * eMudhra & emSigner Local Secret Configuration Template
+ * Project: Digital Health Record Exchange using DEPA Consent, Registry and Modules
+ *
+ * INSTRUCTIONS:
+ * 1. Copy this file and save it as: `config/emsigner.local.php`
+ * 2. Fill in your real eMudhra emSigner & eKYC credentials below.
+ * 3. The file `config/emsigner.local.php` is strictly ignored by Git (.gitignore)
+ *    and direct web access is blocked by Apache (.htaccess).
+ *
+ * HOW TO DETERMINE YOUR eMUDHRA TIER (Sandbox vs Production):
+ * -------------------------------------------------------------
+ * - SANDBOX / DEMO:
+ *   If your emSigner portal login URL is:
+ *     https://demogateway.emsigner.com  or  https://demo.emsigner.com
+ *   Keep:
+ *     'EMSIGNER_MODE'    => 'demo',
+ *     'EMUDHRA_KYC_MODE' => 'sandbox',
+ *
+ * - PRODUCTION:
+ *   If your emSigner portal login URL is:
+ *     https://gateway.emsigner.com  or  https://app.emsigner.com
+ *   Set:
+ *     'EMSIGNER_MODE'    => 'production',
+ *     'EMUDHRA_KYC_MODE' => 'production',
+ */
+
+// Prevent direct web browser invocation
+if (!defined('ROOT_DIR') && php_sapi_name() !== 'cli' && basename($_SERVER['SCRIPT_FILENAME'] ?? '') === basename(__FILE__)) {
+    http_response_code(403);
+    exit('Direct access forbidden.');
+}
+
+return [
+    // -------------------------------------------------------------------------
+    // 1. emSigner Operating Mode ('demo' or 'production')
+    // -------------------------------------------------------------------------
+    // NOTE: Keep 'demo' until your live production credentials and SSL domain
+    // have been fully activated by eMudhra.
+    'EMSIGNER_MODE' => 'demo',
+
+    // -------------------------------------------------------------------------
+    // 2. emSigner Authentication Token
+    // -------------------------------------------------------------------------
+    // Generated under: emSigner Portal -> Settings -> Manage Auth Token
+    'EMSIGNER_AUTH_TOKEN' => 'YOUR_EMSIGNER_AUTH_TOKEN',
+
+    // -------------------------------------------------------------------------
+    // 3. emSigner Application Credentials
+    // -------------------------------------------------------------------------
+    // Generated under: emSigner Portal -> Settings -> Admin -> Apps
+    'EMSIGNER_APP_NAME'   => 'YOUR_EMSIGNER_APP_NAME',
+    'EMSIGNER_SECRET_KEY' => 'YOUR_EMSIGNER_SECRET_KEY',
+
+    // -------------------------------------------------------------------------
+    // 4. eMudhra eKYC / IDBroker Credentials
+    // -------------------------------------------------------------------------
+    // Provided in your eMudhra IDBroker Onboarding Pack
+    'EMUDHRA_KYC_MODE'      => 'sandbox', // 'sandbox' or 'production'
+    'EMUDHRA_KYC_API_KEY'   => 'YOUR_EMUDHRA_KYC_API_KEY',
+    'EMUDHRA_KYC_CLIENT_ID' => 'YOUR_EMUDHRA_KYC_CLIENT_ID',
+
+    // -------------------------------------------------------------------------
+    // 5. Default Reviewing Authority / Approver Settings (Optional override)
+    // -------------------------------------------------------------------------
+    'DEFAULT_APPROVER_NAME'  => 'Dr. S. K. Nambiar',
+    'DEFAULT_APPROVER_ROLE'  => 'Medical Superintendent / Reviewing Authority',
+    'DEFAULT_APPROVER_EMAIL' => 'approver@example.com',
+];

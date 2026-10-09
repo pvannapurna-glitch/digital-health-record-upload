@@ -1,0 +1,98 @@
+# ==============================================================================
+# Git Ignore Configuration - Digital Health Record Exchange (DEPA)
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Environment & Local Secret Configuration Files
+# ------------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# Local Secret Config Files (Protecting API Keys, Tokens, Client Secrets, Passwords)
+config/*.local.php
+config/emsigner.local.php
+config/google.local.php
+config/smtp_config.local.php
+config/google.php
+config/smtp_config.php
+
+# Preserve Safe Configuration Templates
+!config/*.example.php
+!config/emsigner.local.php.example
+!config/google.example.php
+!config/smtp_config.example.php
+
+# ------------------------------------------------------------------------------
+# 2. Cryptographic Keys, Certificates & Tokens
+# ------------------------------------------------------------------------------
+*.pem
+*.key
+*.pkcs12
+*.pfx
+*.p12
+*.crt
+*.cer
+*.der
+
+# ------------------------------------------------------------------------------
+# 3. Composer Dependencies & Binaries
+# ------------------------------------------------------------------------------
+/vendor/
+/composer.phar
+
+# ------------------------------------------------------------------------------
+# 4. Uploaded Health Records, Identity Docs, Signatures & Consent PDFs
+# ------------------------------------------------------------------------------
+/uploads/health_records/*
+!/uploads/health_records/.gitkeep
+!/uploads/health_records/.htaccess
+
+/uploads/consent_agreements/*
+!/uploads/consent_agreements/.gitkeep
+!/uploads/consent_agreements/.htaccess
+
+/uploads/signatures/*
+!/uploads/signatures/.gitkeep
+!/uploads/signatures/.htaccess
+
+/uploads/aadhaar_documents/*
+!/uploads/aadhaar_documents/.gitkeep
+!/uploads/aadhaar_documents/index.php
+
+# ------------------------------------------------------------------------------
+# 5. Application Logs, Sessions, Temporary Files & Scratch Test Artifacts
+# ------------------------------------------------------------------------------
+/logs/*
+!/logs/.gitkeep
+*.log
+*.tmp
+*.temp
+*.lock
+sess_*
+cookie_*.txt
+
+/scratch/*
+!/scratch/.gitkeep
+
+# ------------------------------------------------------------------------------
+# 6. Database Backups, Local Dumps & Pre-Migration Backups
+# ------------------------------------------------------------------------------
+/backups_pre_emsigner/
+backups_*/
+*.sql.bak
+*.dump
+*.bak
+*.backup
+
+# ------------------------------------------------------------------------------
+# 7. IDE, Editor & OS Metadata
+# ------------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
